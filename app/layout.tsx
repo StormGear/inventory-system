@@ -20,7 +20,7 @@ export default function RootLayout({
       >
         	<Theme>
         <DashboardWrapper>
-        {children}
+           {children}
         </DashboardWrapper>
         </Theme>
       </body>

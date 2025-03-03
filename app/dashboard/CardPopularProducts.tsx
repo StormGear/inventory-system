@@ -1,49 +1,40 @@
 
 "use client";
 import { useGetDashboardMetricsQuery } from '@/state/api';
-import { Container, Flex, Skeleton, Text } from '@radix-ui/themes';
 import { CloudAlert, ShoppingBag } from 'lucide-react';
 import React from 'react'
 import Rating from '../(components)/Rating';
+import { SkeletonCard } from '../(components)/Skeleton';
 
 
 const CardPopularProducts = () => {
     const { data: dashboardMetrics , isLoading, error: isError }  = useGetDashboardMetricsQuery();
   return (
-    <div className='row-span-3 xl:row-span-6 bg-whiite shadow-lg rounded-2xl pb-16 hover:scale-105 transition-transform duration-300 ease-in-out'>
+    <div className='row-span-3 xl:row-span-6 bg-white shadow-lg rounded-2xl pb-16 hover:scale-105 transition-transform duration-300 ease-in-out'>
+            <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
+                Popular Products
+            </h2>
+            <hr/>
         {
             isLoading ? (
                 <>
                
          {
             Array.from({ length: 5}, (_, index) => (
-            <Container size="1" className='m-5' key={index}>
-                <Flex direction="column" gap="2">
-                <Text>
-                    <Skeleton>Lorem ipsum dolor sit amet.</Skeleton>
-                </Text>
-
-                <Skeleton>
-                    <Text>Lorem ipsum dolor sit amet</Text>
-                </Skeleton>
-             </Flex>
-            </Container>
+               <SkeletonCard key={index} />
             ))
          }
                 </>
             ): (
                 <>
-                <p className='text-md font-semibold px-7 pt-5 pb-2'>Popular Products</p>
-                <hr />
+              
                 {
                     isError ? (
                         <div className='flex flex-col items-center justify-center h-full'>
                             <CloudAlert  className='w-10 h-10 my-10 text-red-500' />
                             <div className='text-lg font-bold text-red-500'>Error fetching data</div>
                         </div>
-                    ): null
-                }
-                <div className='overflow-auto h-full'>
+                    ):  <div className='overflow-auto h-full'>
                     {dashboardMetrics?.popularProducts.map((product) => (
                        <div
                         key={product.productId}
@@ -77,6 +68,8 @@ const CardPopularProducts = () => {
                        </div>
                     ))}
                 </div>
+                }
+               
                 </>
             ) 
         }

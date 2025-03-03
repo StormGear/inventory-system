@@ -1,6 +1,5 @@
 import { useGetDashboardMetricsQuery } from "@/state/api";
-import { Flex, Skeleton, Text } from "@radix-ui/themes";
-import { Container, TrendingUp } from "lucide-react";
+import { CloudAlert, TrendingUp } from "lucide-react";
 import React, { useState } from "react";
 import {
   Bar,
@@ -11,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { SkeletonCard } from "../(components)/Skeleton";
 
 const CardSalesSummary = () => {
   const { data: dashboardMetrics, isLoading, isError } = useGetDashboardMetricsQuery();
@@ -45,36 +45,35 @@ const CardSalesSummary = () => {
 
   return (
     <div className="row-span-4 xl:row-span-7 bg-white shadow-md rounded-2xl flex flex-col justify-between">
-      {isLoading ? (
-        <>
-               
-        {
-           Array.from({ length: 5}, (_, index) => (
-           <Container size="1" className='m-5' key={index}>
-               <Flex direction="column" gap="2">
-               <Text>
-                   <Skeleton>Lorem ipsum dolor sit amet.</Skeleton>
-               </Text>
-
-               <Skeleton>
-                   <Text>Lorem ipsum dolor sit amet</Text>
-               </Skeleton>
-            </Flex>
-           </Container>
-           ))
-        }
-               </>
-      ) : (
-        <>
-          {/* HEADER */}
-          <div>
+            {/* HEADER */}
+            <div>
             <h2 className="text-lg font-semibold mb-2 px-7 pt-5">
               Sales Summary
             </h2>
             <hr />
           </div>
+      {  isLoading ? (
+                      <>
+                     
+               {
+                  Array.from({ length: 5}, (_, index) => (
+                     <SkeletonCard key={index} />
+                  ))
+               }
+                      </>
+            
+      ) : (
+        <>
 
-          {/* BODY */}
+{
+                    isError ? (
+                        <div className='flex flex-col items-center justify-center h-full'>
+                            <CloudAlert  className='w-10 h-10 my-10 text-red-500' />
+                            <div className='text-lg font-bold text-red-500'>Error fetching data</div>
+                        </div>
+                    ): 
+                    <>
+                    {/* BODY */}
           <div>
             {/* BODY HEADER */}
             <div className="flex justify-between items-center mb-6 px-7 mt-5">
@@ -160,6 +159,11 @@ const CardSalesSummary = () => {
               </p>
             </div>
           </div>
+                    </>
+}
+        
+
+          
         </>
       )}
     </div>
