@@ -51,7 +51,7 @@ const Sidebar = () => {
     } bg-white transition-all duration-300 overflow-hidden h-full shadow-md z-40`;
 
   return (
-    <div className={sidebarClassNames}>
+    <div className={sidebarClassNames} >
          {/* TOP LOGO  */}
         <div className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"}`}>
             <div>logo</div>

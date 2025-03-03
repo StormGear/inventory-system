@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import DashboardWrapper  from "./DashboardWrapper";
+import { Theme } from "@radix-ui/themes";
 
 
 export const metadata: Metadata = {
@@ -17,10 +18,11 @@ export default function RootLayout({
     <html lang="en">
       <body
       >
+        	<Theme>
         <DashboardWrapper>
         {children}
         </DashboardWrapper>
-      
+        </Theme>
       </body>
     </html>
   );
