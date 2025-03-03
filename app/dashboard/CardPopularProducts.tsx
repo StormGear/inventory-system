@@ -5,6 +5,8 @@ import { CloudAlert, ShoppingBag } from 'lucide-react';
 import React from 'react'
 import Rating from '../(components)/Rating';
 import { SkeletonCard } from '../(components)/Skeleton';
+import Image from 'next/image';
+import product4 from '@/assets/product4.jpg';
 
 
 const CardPopularProducts = () => {
@@ -42,7 +44,7 @@ const CardPopularProducts = () => {
                        >
                         <div className="flex items-center gap-3">
                             <div>
-                                img
+                                <Image src={product4} alt={product.name} width={50} height={50} className='rounded-lg'/>
                             </div>
                             <div className='flex flex-col justify-between gap-1'>
                                 <div className='font-bold text-gray-700 text-xl'>
