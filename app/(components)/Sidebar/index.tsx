@@ -5,6 +5,8 @@ import { Archive, Layout, LucideIcon, Menu, User, Clipboard, SlidersHorizontal, 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import React from 'react'
+import Image from 'next/image'
+import logo from '@/assets/logo.png'
 
 interface SidebarLinkProps {
     href: string;
@@ -54,7 +56,9 @@ const Sidebar = () => {
     <div className={sidebarClassNames} >
          {/* TOP LOGO  */}
         <div className={`flex gap-3 justify-between md:justify-normal items-center pt-8 ${isSidebarCollapsed ? "px-5" : "px-8"}`}>
-            <div>logo</div>
+            <div>
+                <Image src={logo} alt='logo' width={50} height={50} />
+            </div>
             <h1 className={`${isSidebarCollapsed ? "hidden" : "block"} font-extrabold text-xl`}>IMS</h1>
             <button className='md:hidden px-3 py-3 bg-gray-100 rounded-full hover:bg-blue-100 ' onClick={toggleSidebar}>
             <Menu className='w-6 h-6' />

@@ -1,24 +1,26 @@
 "use client";
 import { useAppDispatch, useAppSelector } from '@/app/redux';
-import { setIsSidebarCollapsed, setIsDarkMode } from '@/state';
-import { Bell, Menu, Search, Settings, Sun, Moon, X } from 'lucide-react'
+import { setIsSidebarCollapsed} from '@/state';
+import { Bell, Menu, Search, Settings, X } from 'lucide-react'
 import Link from 'next/link';
 import React from 'react'
+import Image from 'next/image';
+import profile from '@/assets/profile.png';
 
 
 
 const Navbar = () => {
         const dispatch = useAppDispatch();
         const isSidebarCollapsed = useAppSelector(state => state.global.isSidebarCollapsed);
-        const isDarkMode = useAppSelector(state => state.global.isDarkMode);
+        // const isDarkMode = useAppSelector(state => state.global.isDarkMode);
     
         const toggleSidebar = () => {
             dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
         }
 
-        const toggleDarkMode = () => {
-            dispatch(setIsDarkMode(!isDarkMode));
-        }
+        // const toggleDarkMode = () => {
+        //     dispatch(setIsDarkMode(!isDarkMode));
+        // }
  
   return (
     <div className='flex justify-between items-center w-full mb-7'>
@@ -44,11 +46,11 @@ const Navbar = () => {
         <div className='flex justify-between items-center gap-5'>
             <div className='hidden md:flex justify-between items-center gap-5'>
                 <div>
-                    <button onClick={toggleDarkMode}>
+                    {/* <button onClick={toggleDarkMode}>
                         {
                             isDarkMode ? <Sun className='w-6 h-6 cursor-pointer text-gray-500' size={24} /> : <Moon className='w-6 h-6 cursor-pointer text-gray-500' size={24} />
                         }
-                    </button>
+                    </button> */}
                 </div>
            
             <div className='relative'>
@@ -58,7 +60,7 @@ const Navbar = () => {
             <hr className='w-0 h-7 border border-solid border-l border-gray-300 mx-3'/>
             <div className='flex items-center gap-3 cursor-pointer'>
                 <div className='w-9 h-9'>
-                    image
+                    <Image src={profile} className='w-full h-full object-cover rounded-full' alt='profile picture' />
                 </div>
                 <span className='font-semibold'>John Doe</span>
             </div>
