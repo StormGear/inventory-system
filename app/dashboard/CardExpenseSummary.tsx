@@ -16,9 +16,11 @@ import { SkeletonCard } from "../(components)/Skeleton";
     const { data: dashboardMetrics, isLoading, isError } = useGetDashboardMetricsQuery();
   
     const expenseSummary = dashboardMetrics?.expenseSummary[0];
+
   
     const expenseByCategorySummary =
       dashboardMetrics?.expenseByCategorySummary || [];
+
   
     const expenseSums = expenseByCategorySummary.reduce(
       (acc: ExpenseSums, item: ExpenseByCategorySummary) => {

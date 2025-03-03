@@ -20,7 +20,7 @@ export const api = createApi({
     getDashboardMetrics: build.query<DashboardMetrics, void>({
       query: () => '/dashboard',
       providesTags: ['DashboardMetrics'],
-    })
+    }),
   })
 });
 
